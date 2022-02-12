@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -54,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: new CmnDrawer(),
       appBar: AppBar(
         title: Text(widget.title),
       ),
