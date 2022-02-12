@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'data_json.dart';
 import 'drawer.dart';
 
 class Sedetails extends StatefulWidget {
@@ -47,6 +48,10 @@ class _SedetailsState extends State<Sedetails> {
                     var res = await http.post(url, body: data);
                     // ignore: avoid_print
                     print(jsonDecode(res.body));
+                    var s = jsonDecode(res.body);
+
+                    print(s[0]["name"]);
+
                     setState(() {
                       String a = url.toString();
                     });
