@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'sedetails.dart';
+import 'semark.dart';
 //import 'screenscaling.dart';
 
 class CmnDrawer extends StatelessWidget {
@@ -36,17 +37,16 @@ class CmnDrawer extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "CoViQrR",
+                    "student mangement",
                     style: TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontWeight: FontWeight.bold,
-                        fontSize: 28,
+                        fontSize: 20,
                         fontStyle: FontStyle.italic),
                   ),
                 ),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Card(
@@ -54,7 +54,7 @@ class CmnDrawer extends StatelessWidget {
                 shadowColor: const Color(0xFF501474),
                 color: Colors.transparent,
                 child: ListTile(
-                  title: const Text('Visited Data',
+                  title: const Text('enter profile',
                       style: TextStyle(color: Color(0xFFFFFFFF))),
                   onTap: () {
                     Navigator.push(
@@ -76,7 +76,7 @@ class CmnDrawer extends StatelessWidget {
                 shadowColor: const Color(0xFF501474),
                 color: Colors.transparent,
                 child: ListTile(
-                  title: const Text('Profile',
+                  title: const Text('see Profile',
                       style: TextStyle(color: Color(0xFFFFFFFF))),
                   onTap: () {
                     Navigator.push(
@@ -89,78 +89,26 @@ class CmnDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.all(12.0),
-            //   child: Card(
-            //     margin: EdgeInsets.only(right: 10),
-            //     shadowColor: Color(0xFF501474),
-            //     color: Colors.transparent,
-            //     child: ListTile(
-            //       title:
-            //           Text('Help', style: TextStyle(color: Color(0xFFFFFFFF))),
-            //       onTap: () {
-            //         Navigator.push(context,
-            //             MaterialPageRoute(builder: (context) => Help()));
-            //       },
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.all(12.0),
-            //   child: Card(
-            //     margin: EdgeInsets.only(right: 10),
-            //     shadowColor: Color(0xFF501474),
-            //     color: Colors.transparent,
-            //     child: ListTile(
-            //       title: Text('About Developers',
-            //           style: TextStyle(color: Color(0xFFFFFFFF))),
-            //       onTap: () {
-            //         Navigator.push(context,
-            //             MaterialPageRoute(builder: (context) => AboutUs()));
-            //       },
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.all(12.0),
-            //   child: Card(
-            //     margin: EdgeInsets.only(right: 10),
-            //     shadowColor: Color(0xFF501474),
-            //     color: Colors.transparent,
-            //     child: ListTile(
-            //       title: Text('Change Vaccination status',
-            //           style: TextStyle(color: Color(0xFFFFFFFF))),
-            //       onTap: () {
-            //         Navigator.push(
-            //           context,
-            //           MaterialPageRoute(
-            //             builder: (context) => VaccinationStatus(),
-            //           ),
-            //         );
-            //       },
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.all(12.0),
-            //   child: Card(
-            //     margin: EdgeInsets.only(right: 10),
-            //     shadowColor: Color(0xFF501474),
-            //     color: Colors.transparent,
-            //     child: ListTile(
-            //       title: Text('Log out',
-            //           style: TextStyle(color: Color(0xFFFFFFFF))),
-            //       onTap: () async {
-            //         //signout
-            //         //Go to main page
-            //         // Navigator.pushAndRemoveUntil(
-            //         //     context,
-            //         //     MaterialPageRoute(builder: (context) => ChoosingPage()),
-            //         //     (route) => false);
-            //       },
-            //     ),
-            //   ),
-            // ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Card(
+                margin: const EdgeInsets.only(right: 10),
+                shadowColor: const Color(0xFF501474),
+                color: Colors.transparent,
+                child: ListTile(
+                  title: const Text('see mark',
+                      style: TextStyle(color: Color(0xFFFFFFFF))),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SeMark(),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -6,21 +6,16 @@ import 'package:http/http.dart' as http;
 import 'data_json.dart';
 import 'drawer.dart';
 
-class Sedetails extends StatefulWidget {
-  const Sedetails({Key? key}) : super(key: key);
+class SeMark extends StatefulWidget {
+  const SeMark({Key? key}) : super(key: key);
 
   @override
-  _SedetailsState createState() => _SedetailsState();
+  _SeMarkState createState() => _SeMarkState();
 }
 
-class _SedetailsState extends State<Sedetails> {
-  TextEditingController regnocontroller = TextEditingController();
-  String name = "";
-  String regno = "";
-  String depNo = "";
-  String sem = "";
-  String roll = "";
-  String college = "", deptname = "", hod = "", district = "", address = "";
+class _SeMarkState extends State<SeMark> {
+  TextEditingController rollcontroller = TextEditingController();
+  String s1 = "", s2 = "", s3 = "", s4 = "", s5 = "", s6 = "", s7 = "", s8 = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +31,7 @@ class _SedetailsState extends State<Sedetails> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextField(
-                    controller: regnocontroller,
+                    controller: rollcontroller,
                     decoration: const InputDecoration(
                       hintText: 'enter here roll no',
                       labelText: 'roll no',
@@ -51,36 +46,32 @@ class _SedetailsState extends State<Sedetails> {
                           host: '192.168.81.212',
                           path: '/flutter/f.php');
                       var data = {
-                        'roll': regnocontroller.text,
+                        'roll': rollcontroller.text,
                       };
                       var res = await http.post(url, body: data);
                       // ignore: avoid_print
                       print(jsonDecode(res.body));
                       var s = jsonDecode(res.body);
                       setState(() {
-                        name = s[0]["name"];
-                        roll = s[0]["roll"];
-                        regno = "WIP";
-                        depNo = "WIP";
-                        sem = "WIP";
-                        college = "WIP";
-                        deptname = "WIP";
-                        hod = "WIP";
-                        district = "WIP";
-                        address = "WIP";
+                        s1 = "WIP";
+                        s2 = "WIP";
+                        s3 = "WIP";
+                        s4 = "WIP";
+                        s5 = "WIP";
+                        s6 = "WIP";
+                        s7 = "WIP";
+                        s8 = "WIP";
                       });
                     },
                     child: const Text("search")),
-                Text("Name: $name"),
-                Text("Roll number: $roll"),
-                Text("Register number: $regno"),
-                Text("Department: $depNo"),
-                Text("Semester: $sem"),
-                Text("College: $college"),
-                Text("hod: $hod"),
-                Text("Department name: $deptname"),
-                Text("district: $district"),
-                Text("Full address: $address"),
+                Text("s1: $s1"),
+                Text("s2: $s2"),
+                Text("s3: $s3"),
+                Text("s4: $s4"),
+                Text("s5: $s5"),
+                Text("s6: $s6"),
+                Text("s7: $s7"),
+                Text("s8: $s8"),
               ],
             ),
           ),
