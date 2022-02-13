@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'attendance.dart';
+import 'editmark.dart';
 import 'main.dart';
 import 'sedetails.dart';
 import 'semark.dart';
@@ -103,6 +105,46 @@ class CmnDrawer extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => const SeMark(),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Card(
+                margin: const EdgeInsets.only(right: 10),
+                shadowColor: const Color(0xFF501474),
+                color: Colors.transparent,
+                child: ListTile(
+                  title: const Text('edit mark',
+                      style: TextStyle(color: Color(0xFFFFFFFF))),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const EditMark(),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Card(
+                margin: const EdgeInsets.only(right: 10),
+                shadowColor: const Color(0xFF501474),
+                color: Colors.transparent,
+                child: ListTile(
+                  title: const Text('attendence',
+                      style: TextStyle(color: Color(0xFFFFFFFF))),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Attendance(),
                       ),
                     );
                   },
