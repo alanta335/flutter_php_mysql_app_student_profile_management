@@ -49,10 +49,10 @@ class _SedetailsState extends State<Sedetails> {
                         'reg_no': regnocontroller.text.toString(),
                       };
 
-                      var res = await http.post(url, body: data);
-                      print(jsonDecode(res.body));
-                      var s = jsonDecode(res.body);
                       try {
+                        var res = await http.post(url, body: data);
+                        var s = jsonDecode(res.body);
+                        print(jsonDecode(res.body));
                         setState(() {
                           name = s[0]['fname'] + ' ' + s[0]['lname'];
                           roll = s[0]['roll'];

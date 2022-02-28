@@ -37,10 +37,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() async {
     Uri url = Uri(
-        scheme: "http", host: '192.168.81.212', path: '/flutter/insert.php');
+        scheme: "http",
+        host: '192.168.195.212',
+        path: '/flutter/insertprofile.php');
     var data = {
       'roll': rollcontroller.text,
-      'name': namecontroller.text,
+      'fname': fnamecontroller.text,
+      'lname': lnamecontroller.text,
       'regno': regnocontroller.text,
       'deptname': deptnamecontroller.text,
       'semester': semestercontroller.text,
@@ -48,14 +51,15 @@ class _MyHomePageState extends State<MyHomePage> {
       'collegename': colnamecontroller.text,
       'district': distcontroller.text,
       'depno': deptnocontroller.text,
-      'address': addresscontroller.text,
       'hod': hodcontroller.text,
     };
     var res = await http.post(url, body: data);
     // ignore: avoid_print
-    print(jsonDecode(res.body));
+    print(jsonDecode(res.body) + "---------");
+    var s = jsonDecode(res.body);
+    print(s.toString() + "++++++++++");
     setState(() {
-      a = res.statusCode.toString();
+      a = s.toString();
     });
     if (a == "200") {
       Navigator.push(
@@ -66,7 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   TextEditingController rollcontroller = TextEditingController();
-  TextEditingController namecontroller = TextEditingController();
+  TextEditingController fnamecontroller = TextEditingController();
+  TextEditingController lnamecontroller = TextEditingController();
   TextEditingController regnocontroller = TextEditingController();
   TextEditingController deptnamecontroller = TextEditingController();
   TextEditingController semestercontroller = TextEditingController();
@@ -74,13 +79,12 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController colnocontroller = TextEditingController();
   TextEditingController distcontroller = TextEditingController();
   TextEditingController deptnocontroller = TextEditingController();
-  TextEditingController addresscontroller = TextEditingController();
   TextEditingController hodcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: new CmnDrawer(),
+      drawer: const CmnDrawer(),
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -106,10 +110,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: TextField(
-                        controller: namecontroller,
+                        controller: fnamecontroller,
                         decoration: const InputDecoration(
-                          hintText: 'enter here name',
-                          labelText: 'Name',
+                          hintText: 'enter here first name',
+                          labelText: 'fName',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: lnamecontroller,
+                        decoration: const InputDecoration(
+                          hintText: 'enter here last name',
+                          labelText: 'lName',
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -198,17 +213,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         decoration: const InputDecoration(
                           hintText: 'enter here hod name',
                           labelText: 'hod name',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: TextField(
-                        controller: addresscontroller,
-                        decoration: const InputDecoration(
-                          hintText: 'enter your address',
-                          labelText: 'Address',
                           border: OutlineInputBorder(),
                         ),
                       ),
