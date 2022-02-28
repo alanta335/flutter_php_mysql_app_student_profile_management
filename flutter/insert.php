@@ -10,7 +10,8 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
   }
   
-  $q = mysqli_query($conn,"INSERT INTO student (roll,name) VALUES($roll,'$name')");
+  $q = mysqli_query($conn,"insert into Student(reg_no, fname,roll_no,dep_no,semester) values ($reg_no,'$name',$roll_no,$dept,$semester);
+  ");
   $s = mysqli_query($conn,"SELECT * from student ");
   
   $return_arr = array();
