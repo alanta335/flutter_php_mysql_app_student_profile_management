@@ -13,11 +13,9 @@ class Sedetails extends StatefulWidget {
 class _SedetailsState extends State<Sedetails> {
   TextEditingController regnocontroller = TextEditingController();
   String name = "";
-  String regno = "";
-  String depNo = "";
   String sem = "";
   String roll = "";
-  String college = "", deptname = "", hod = "", district = "", address = "";
+  String college = "", deptname = "", hod = "", district = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,8 +33,8 @@ class _SedetailsState extends State<Sedetails> {
                   child: TextField(
                     controller: regnocontroller,
                     decoration: const InputDecoration(
-                      hintText: 'enter here roll no',
-                      labelText: 'roll no',
+                      hintText: 'enter here reg no',
+                      labelText: 'reg no',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -45,39 +43,37 @@ class _SedetailsState extends State<Sedetails> {
                     onPressed: () async {
                       Uri url = Uri(
                           scheme: "http",
-                          host: '192.168.81.212',
-                          path: '/flutter/f.php');
+                          host: '192.168.195.212',
+                          path: '/flutter/seeprofile.php');
                       var data = {
-                        'reg_no': regnocontroller.text,
+                        'reg_no': regnocontroller.text.toString(),
                       };
+
                       var res = await http.post(url, body: data);
-                      // ignore: avoid_print
                       print(jsonDecode(res.body));
                       var s = jsonDecode(res.body);
-                      setState(() {
-                        name = s[0]["name"];
-                        roll = s[0]["roll"];
-                        regno = "WIP";
-                        depNo = "WIP";
-                        sem = "WIP";
-                        college = "WIP";
-                        deptname = "WIP";
-                        hod = "WIP";
-                        district = "WIP";
-                        address = "WIP";
-                      });
+                      try {
+                        setState(() {
+                          name = s[0]['fname'] + ' ' + s[0]['lname'];
+                          roll = s[0]['roll'];
+                          sem = s[0]['sem'];
+                          college = s[0]['col_name'];
+                          deptname = s[0]['dep_name'];
+                          hod = s[0]['hod'];
+                          district = s[0]['district'];
+                        });
+                      } catch (exception) {
+                        print(exception.toString());
+                      }
                     },
                     child: const Text("search")),
                 Text("Name: $name"),
                 Text("Roll number: $roll"),
-                Text("Register number: $regno"),
-                Text("Department: $depNo"),
                 Text("Semester: $sem"),
                 Text("College: $college"),
                 Text("hod: $hod"),
                 Text("Department name: $deptname"),
                 Text("district: $district"),
-                Text("Full address: $address"),
               ],
             ),
           ),
