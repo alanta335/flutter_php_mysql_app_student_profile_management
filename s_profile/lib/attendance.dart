@@ -48,8 +48,8 @@ class _AttendanceState extends State<Attendance> {
                   child: TextField(
                     controller: p_or_a_controller,
                     decoration: const InputDecoration(
-                      hintText: 'enter here p for present and a for absent',
-                      labelText: 'present or absent today',
+                      hintText: 'enter new attendance percentage',
+                      labelText: 'attendance',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -58,7 +58,7 @@ class _AttendanceState extends State<Attendance> {
                     onPressed: () async {
                       Uri url = url_create.uri_cr("attendance.php");
                       var data = {
-                        'regno': regnocontroller.text,
+                        'reg_no': regnocontroller.text,
                         'attendance': p_or_a_controller.text,
                       };
                       var res = await http.post(url, body: data);
@@ -84,17 +84,16 @@ class _AttendanceState extends State<Attendance> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    Uri url = url_create.uri_cr("attendance.php");
+                    Uri url = url_create.uri_cr("seeattendance.php");
                     var data = {
-                      'regno': regnocontroller.text,
-                      'date': nocontroller.text,
+                      'reg_no': regnocontroller.text,
                     };
                     var res = await http.post(url, body: data);
                     // ignore: avoid_print
                     print(jsonDecode(res.body));
                     var s = jsonDecode(res.body);
                     setState(() {
-                      b = s.toString();
+                      b = s[0]['pre'];
                     });
                   },
                   child: const Text("see attendance"),
