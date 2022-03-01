@@ -35,7 +35,7 @@ class _EditMarkState extends State<EditMark> {
                     controller: regnocontroller,
                     decoration: const InputDecoration(
                       hintText: 'enter here registration no',
-                      labelText: 'registeration no',
+                      labelText: 'registration no',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -64,11 +64,11 @@ class _EditMarkState extends State<EditMark> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      Uri url = url_create.uri_cr("editm.php");
+                      Uri url = url_create.uri_cr("editmark.php");
                       var data = {
-                        'regno': regnocontroller.text,
+                        'reg_no': regnocontroller.text,
                         'sem': semcontroller.text,
-                        'sem_mark': semmarkcontroller.text,
+                        'mark': semmarkcontroller.text,
                       };
                       var res = await http.post(url, body: data);
                       // ignore: avoid_print
