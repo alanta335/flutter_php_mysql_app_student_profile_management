@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
+import 'cmn.dart';
 import 'drawer.dart';
 
 class EditMark extends StatefulWidget {
@@ -64,10 +64,7 @@ class _EditMarkState extends State<EditMark> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      Uri url = Uri(
-                          scheme: "http",
-                          host: '192.168.81.212',
-                          path: '/flutter/editm.php');
+                      Uri url = url_create.uri_cr("editm.php");
                       var data = {
                         'regno': regnocontroller.text,
                         'sem': semcontroller.text,

@@ -3,7 +3,7 @@ import 'drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'mark.dart';
-
+import 'cmn.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -36,10 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
   String a = "";
 
   void _incrementCounter() async {
-    Uri url = Uri(
-        scheme: "http",
-        host: '192.168.195.212',
-        path: '/flutter/insertprofile.php');
+    Uri url = url_create.uri_cr("insertprofile.php");
+    print(url);
     var data = {
       'roll': rollcontroller.text,
       'fname': fnamecontroller.text,

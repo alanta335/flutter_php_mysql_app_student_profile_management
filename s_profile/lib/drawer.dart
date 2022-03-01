@@ -5,7 +5,7 @@ import 'main.dart';
 import 'sedetails.dart';
 import 'semark.dart';
 //import 'screenscaling.dart';
-
+import 'cmn.dart';
 class CmnDrawer extends StatelessWidget {
   const CmnDrawer({Key? key}) : super(key: key);
   @override

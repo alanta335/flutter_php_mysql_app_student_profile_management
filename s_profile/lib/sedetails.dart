@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'data_json.dart';
 import 'drawer.dart';
-
+import 'cmn.dart';
 class Sedetails extends StatefulWidget {
   const Sedetails({Key? key}) : super(key: key);
   @override
@@ -41,10 +41,7 @@ class _SedetailsState extends State<Sedetails> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      Uri url = Uri(
-                          scheme: "http",
-                          host: '192.168.195.212',
-                          path: '/flutter/seeprofile.php');
+                      Uri url = url_create.uri_cr("seeprofile.php");
                       var data = {
                         'reg_no': regnocontroller.text.toString(),
                       };

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
+import 'cmn.dart';
 import 'data_json.dart';
 import 'drawer.dart';
 
@@ -41,10 +41,7 @@ class _SeMarkState extends State<SeMark> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      Uri url = Uri(
-                          scheme: "http",
-                          host: '192.168.81.212',
-                          path: '/flutter/f.php');
+                      Uri url = url_create.uri_cr("f.php");
                       var data = {
                         'roll': rollcontroller.text,
                       };

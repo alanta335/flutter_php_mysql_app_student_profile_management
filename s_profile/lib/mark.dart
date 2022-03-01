@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'drawer.dart';
-
+import 'cmn.dart';
 class Mark extends StatefulWidget {
   const Mark({Key? key}) : super(key: key);
 
@@ -132,10 +132,7 @@ class _MarkState extends State<Mark> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      Uri url = Uri(
-                          scheme: "http",
-                          host: '192.168.81.212',
-                          path: '/flutter/f.php');
+                    Uri url = url_create.uri_cr("f.php");
                       var data = {
                         's1': s1controller.text,
                         's2': s2controller.text,

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
-
+import 'cmn.dart';
 import 'drawer.dart';
 
 class Attendance extends StatefulWidget {
@@ -56,10 +56,7 @@ class _AttendanceState extends State<Attendance> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      Uri url = Uri(
-                          scheme: "http",
-                          host: '192.168.81.212',
-                          path: '/flutter/attendance.php');
+                      Uri url = url_create.uri_cr("attendance.php");
                       var data = {
                         'regno': regnocontroller.text,
                         'attendance': p_or_a_controller.text,
@@ -87,10 +84,7 @@ class _AttendanceState extends State<Attendance> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    Uri url = Uri(
-                        scheme: "http",
-                        host: '192.168.81.212',
-                        path: '/flutter/seeattendance.php');
+                    Uri url = url_create.uri_cr("attendance.php");
                     var data = {
                       'regno': regnocontroller.text,
                       'date': nocontroller.text,
