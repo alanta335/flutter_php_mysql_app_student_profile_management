@@ -56,7 +56,7 @@ class _AttendanceState extends State<Attendance> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      Uri url = url_create.uri_cr("attendance.php");
+                      Uri url = url_create.uri_cr("seeattendance.php");
                       var data = {
                         'reg_no': regnocontroller.text,
                         'attendance': p_or_a_controller.text,
