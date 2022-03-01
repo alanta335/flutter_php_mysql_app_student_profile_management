@@ -14,7 +14,7 @@ class SeMark extends StatefulWidget {
 }
 
 class _SeMarkState extends State<SeMark> {
-  TextEditingController rollcontroller = TextEditingController();
+  TextEditingController regcontroller = TextEditingController();
   String s1 = "", s2 = "", s3 = "", s4 = "", s5 = "", s6 = "", s7 = "", s8 = "";
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _SeMarkState extends State<SeMark> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextField(
-                    controller: rollcontroller,
+                    controller: regcontroller,
                     decoration: const InputDecoration(
                       hintText: 'enter here roll no',
                       labelText: 'roll no',
@@ -41,9 +41,9 @@ class _SeMarkState extends State<SeMark> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      Uri url = url_create.uri_cr("f.php");
+                      Uri url = url_create.uri_cr("seemark.php");
                       var data = {
-                        'roll': rollcontroller.text,
+                        'reg_no': regcontroller.text,
                       };
                       var res = await http.post(url, body: data);
                       // ignore: avoid_print
@@ -51,13 +51,13 @@ class _SeMarkState extends State<SeMark> {
                       var s = jsonDecode(res.body);
                       setState(() {
                         s1 = s[0]["s1"];
-                        s2 = "WIP";
-                        s3 = "WIP";
-                        s4 = "WIP";
-                        s5 = "WIP";
-                        s6 = "WIP";
-                        s7 = "WIP";
-                        s8 = "WIP";
+                        s3 = s[0]["s2"];
+                        s2 = s[0]["s3"];
+                        s4 = s[0]["s4"];
+                        s5 = s[0]["s5"];
+                        s6 = s[0]["s6"];
+                        s7 = s[0]["s7"];
+                        s8 = s[0]["s8"];
                       });
                     },
                     child: const Text("search")),

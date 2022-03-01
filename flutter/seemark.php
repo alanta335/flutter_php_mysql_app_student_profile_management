@@ -3,7 +3,7 @@ $servername = "localhost";
 $username = "root";
 $password = "root";
 $database = "flutter";
-$reg = $_POST["reg_no"];
+$reg = 104;
 $conn = mysqli_connect($servername, $username, $password,$database);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
