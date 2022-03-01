@@ -16,7 +16,10 @@ class _EditMarkState extends State<EditMark> {
   TextEditingController regnocontroller = TextEditingController();
   TextEditingController semcontroller = TextEditingController();
   TextEditingController semmarkcontroller = TextEditingController();
+  TextEditingController passcontroller = TextEditingController();
+
   String a = "";
+  var p = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,23 +65,44 @@ class _EditMarkState extends State<EditMark> {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextField(
+                    obscureText: true,
+                    controller: passcontroller,
+                    decoration: const InputDecoration(
+                      hintText: 'enter password',
+                      labelText: 'admin password',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
                 ElevatedButton(
                     onPressed: () async {
-                      Uri url = url_create.uri_cr("editmark.php");
-                      var data = {
-                        'reg_no': regnocontroller.text,
-                        'sem': semcontroller.text,
-                        'mark': semmarkcontroller.text,
-                      };
-                      var res = await http.post(url, body: data);
-                      // ignore: avoid_print
-                      print(jsonDecode(res.body));
-                      var s = jsonDecode(res.body);
                       setState(() {
-                        a = s.toString();
+                        p = passcontroller.text.toString();
                       });
+                      if (p == "admin") {
+                        setState(() {
+                          a = "succeeded";
+                        });
+                        Uri url = url_create.uri_cr("editmark.php");
+                        var data = {
+                          'reg_no': regnocontroller.text,
+                          'sem': "${semcontroller.text}_sgpa",
+                          'mark': semmarkcontroller.text,
+                        };
+                        var res = await http.post(url, body: data);
+                        // ignore: avoid_print
+                        print(jsonDecode(res.body));
+                        var s = jsonDecode(res.body);
+                      } else {
+                        setState(() {
+                          a = "wrong password";
+                        });
+                      }
                     },
-                    child: const Text("Edit")),
+                    child: const Text("insert")),
                 Text("$a"),
               ],
             ),

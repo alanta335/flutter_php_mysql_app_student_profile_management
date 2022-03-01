@@ -43,45 +43,6 @@ class _AttendanceState extends State<Attendance> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: p_or_a_controller,
-                    decoration: const InputDecoration(
-                      hintText: 'enter new attendance percentage',
-                      labelText: 'attendance',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                    onPressed: () async {
-                      Uri url = url_create.uri_cr("seeattendance.php");
-                      var data = {
-                        'reg_no': regnocontroller.text,
-                        'attendance': p_or_a_controller.text,
-                      };
-                      var res = await http.post(url, body: data);
-                      // ignore: avoid_print
-                      print(jsonDecode(res.body));
-                      var s = jsonDecode(res.body);
-                      setState(() {
-                        a = s.toString();
-                      });
-                    },
-                    child: const Text("Edit")),
-                Text("$a"),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: nocontroller,
-                    decoration: const InputDecoration(
-                      hintText: 'enter the day in the format yyyy-mm-dd',
-                      labelText: 'date',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
                 ElevatedButton(
                   onPressed: () async {
                     Uri url = url_create.uri_cr("seeattendance.php");
