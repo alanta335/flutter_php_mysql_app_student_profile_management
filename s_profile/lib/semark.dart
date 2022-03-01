@@ -50,7 +50,7 @@ class _SeMarkState extends State<SeMark> {
                       print(jsonDecode(res.body));
                       var s = jsonDecode(res.body);
                       setState(() {
-                        s1 = "WIP";
+                        s1 = s[0]["s1"];
                         s2 = "WIP";
                         s3 = "WIP";
                         s4 = "WIP";
