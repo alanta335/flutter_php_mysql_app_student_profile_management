@@ -6,6 +6,7 @@ import 'sedetails.dart';
 import 'semark.dart';
 //import 'screenscaling.dart';
 import 'cmn.dart';
+
 class CmnDrawer extends StatelessWidget {
   const CmnDrawer({Key? key}) : super(key: key);
   @override
@@ -84,7 +85,7 @@ class CmnDrawer extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Sedetails("100"),
+                        builder: (context) => Sedetails(regno: "100"),
                       ),
                     );
                   },

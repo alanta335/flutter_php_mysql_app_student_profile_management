@@ -3,13 +3,14 @@ import 'auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'sedetails.dart';
+
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-String rg = "";
+  String rg = "";
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   @override
@@ -37,7 +38,7 @@ String rg = "";
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
-                  obscureText:true,
+                obscureText: true,
                 controller: passwordController,
                 decoration: InputDecoration(
                   hintText: 'Enter your password',
@@ -52,21 +53,20 @@ String rg = "";
             ),
             ElevatedButton(
               child: Text('Log in'),
-              onPressed: ()async {
+              onPressed: () async {
                 rg = emailController.text;
-                Auth user_auth = new Auth(reg_no : emailController.text);
-                  if(await user_auth.authentication(emailController.text,passwordController.text))
-                  {
-                    Navigator.push(
-                       context,
-                       MaterialPageRoute(builder: (context) =>  Sedetails(rg)),
-  );
-
-                  }
-                  else  
-                    print("Login fail ------------------");
-                  },                 
-           ),
+                Auth user_auth = new Auth(reg_no: emailController.text);
+                if (await user_auth.authentication(
+                    emailController.text, passwordController.text)) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Sedetails(regno: rg)),
+                  );
+                } else
+                  print("Login fail ------------------");
+              },
+            ),
           ],
         ),
       ),
