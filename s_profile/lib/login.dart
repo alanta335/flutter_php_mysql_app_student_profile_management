@@ -9,7 +9,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
+String rg = "";
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   @override
@@ -53,11 +53,13 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               child: Text('Log in'),
               onPressed: ()async {
-                  if(await Auth.authentication(emailController.text,passwordController.text))
+                rg = emailController.text;
+                Auth user_auth = new Auth(reg_no : emailController.text);
+                  if(await user_auth.authentication(emailController.text,passwordController.text))
                   {
                     Navigator.push(
                        context,
-                       MaterialPageRoute(builder: (context) => const Sedetails()),
+                       MaterialPageRoute(builder: (context) =>  Sedetails(rg)),
   );
 
                   }

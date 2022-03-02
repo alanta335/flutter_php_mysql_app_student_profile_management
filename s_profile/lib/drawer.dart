@@ -84,7 +84,7 @@ class CmnDrawer extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const Sedetails(),
+                        builder: (context) => Sedetails("100"),
                       ),
                     );
                   },

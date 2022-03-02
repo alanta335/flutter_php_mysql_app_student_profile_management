@@ -5,18 +5,24 @@ import 'data_json.dart';
 import 'drawer.dart';
 import 'cmn.dart';
 class Sedetails extends StatefulWidget {
-  const Sedetails({Key? key}) : super(key: key);
+  final regno;
+  Sedetails({required this.regno});
   @override
-  _SedetailsState createState() => _SedetailsState();
+  _SedetailsState createState() => _SedetailsState(regno: regno);
 }
 
 class _SedetailsState extends State<Sedetails> {
+  String regno;
+  _SedetailsState({required this.regno});
   TextEditingController regnocontroller = TextEditingController();
+
   String name = "";
   String sem = "";
   String roll = "";
   String college = "", deptname = "", hod = "", district = "";
+
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const CmnDrawer(),
