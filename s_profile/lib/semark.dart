@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'cmn.dart';
@@ -14,7 +14,6 @@ class SeMark extends StatefulWidget {
 }
 
 class _SeMarkState extends State<SeMark> {
-  TextEditingController regcontroller = TextEditingController();
   String s1 = "", s2 = "", s3 = "", s4 = "", s5 = "", s6 = "", s7 = "", s8 = "";
   @override
   Widget build(BuildContext context) {
@@ -28,22 +27,11 @@ class _SeMarkState extends State<SeMark> {
           Center(
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: regcontroller,
-                    decoration: const InputDecoration(
-                      hintText: 'enter here roll no',
-                      labelText: 'roll no',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
                 ElevatedButton(
                     onPressed: () async {
                       Uri url = url_create.uri_cr("seemark.php");
                       var data = {
-                        'reg_no': regcontroller.text,
+                        'reg_no': regno,
                       };
                       var res = await http.post(url, body: data);
                       // ignore: avoid_print

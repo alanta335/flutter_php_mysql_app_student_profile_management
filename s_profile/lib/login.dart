@@ -3,6 +3,7 @@ import 'auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'sedetails.dart';
+import 'main.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,8 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String rg = "";
-  TextEditingController emailController = TextEditingController();
+  TextEditingController regnoController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,10 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
-                controller: emailController,
+                controller: regnoController,
                 decoration: InputDecoration(
-                  hintText: 'Enter your email ID',
-                  labelText: 'Email',
+                  hintText: 'Enter your registration no',
+                  labelText: 'reg no',
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.emailAddress,
@@ -54,14 +54,16 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               child: Text('Log in'),
               onPressed: () async {
-                rg = emailController.text;
-                Auth user_auth = new Auth(reg_no: emailController.text);
+                setState(() {
+                  regno = regnoController.text;
+                });
+                Auth user_auth = new Auth(reg_no: regnoController.text);
                 if (await user_auth.authentication(
-                    emailController.text, passwordController.text)) {
+                    regnoController.text, passwordController.text)) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Sedetails(regno: rg)),
+                        builder: (context) => Sedetails(regno: regno)),
                   );
                 } else
                   print("Login fail ------------------");

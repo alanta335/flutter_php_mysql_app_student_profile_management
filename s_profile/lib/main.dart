@@ -5,6 +5,9 @@ import 'package:http/http.dart' as http;
 import 'mark.dart';
 import 'cmn.dart';
 import 'login.dart';
+
+String regno = "";
+
 void main() {
   runApp(const MyApp());
 }
@@ -19,7 +22,49 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: Startpage(),
+    );
+  }
+}
+
+class Startpage extends StatefulWidget {
+  @override
+  State<Startpage> createState() => _StartpageState();
+}
+
+class _StartpageState extends State<Startpage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Center(child: Text("Student management"))),
+      body: Container(
+          child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LoginPage(),
+                    ),
+                  );
+                },
+                child: Text("  Log in  ")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyHomePage(title: "Registration"),
+                    ),
+                  );
+                },
+                child: Text("Register"))
+          ],
+        ),
+      )),
     );
   }
 }
@@ -46,19 +91,21 @@ class _MyHomePageState extends State<MyHomePage> {
       'regno': regnocontroller.text,
       'deptname': deptnamecontroller.text,
       'semester': semestercontroller.text,
+      'pass': passcontroller.text,
       'collegeid': colnocontroller.text,
       'collegename': colnamecontroller.text,
       'district': distcontroller.text,
       'depno': deptnocontroller.text,
       'hod': hodcontroller.text,
+      'attendance': attendanceC.text,
     };
     var res = await http.post(url, body: data);
+    a = res.statusCode.toString();
     // ignore: avoid_print
-    print(jsonDecode(res.body) + "---------");
-    var s = jsonDecode(res.body);
-    print(s.toString() + "++++++++++");
+    //var s = jsonDecode(res.body);
+    //print(res.body['q1'] + "++++++++++");
     setState(() {
-      a = s.toString();
+      regno = regnocontroller.text;
     });
     if (a == "200") {
       Navigator.push(
@@ -79,13 +126,14 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController distcontroller = TextEditingController();
   TextEditingController deptnocontroller = TextEditingController();
   TextEditingController hodcontroller = TextEditingController();
+  TextEditingController passcontroller = TextEditingController();
+  TextEditingController attendanceC = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const CmnDrawer(),
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("Enter Student Details"),
       ),
       body: ListView(
         children: [
@@ -100,8 +148,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: TextField(
                         controller: rollcontroller,
                         decoration: const InputDecoration(
-                          hintText: 'enter here roll no',
-                          labelText: 'roll no',
+                          hintText: 'Enter the Roll number',
+                          labelText: 'Roll number',
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -111,8 +159,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: TextField(
                         controller: fnamecontroller,
                         decoration: const InputDecoration(
-                          hintText: 'enter here first name',
-                          labelText: 'fName',
+                          hintText: 'Enter the First name',
+                          labelText: 'First Name',
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -122,8 +170,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: TextField(
                         controller: lnamecontroller,
                         decoration: const InputDecoration(
-                          hintText: 'enter here last name',
-                          labelText: 'lName',
+                          hintText: 'Enter the Last name',
+                          labelText: 'Last name',
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -133,8 +181,31 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: TextField(
                         controller: regnocontroller,
                         decoration: const InputDecoration(
-                          hintText: 'enter here register number',
-                          labelText: 'Register no',
+                          hintText: 'Enter the registration number',
+                          labelText: 'Register Number',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextField(
+                        obscureText: true,
+                        controller: passcontroller,
+                        decoration: const InputDecoration(
+                          hintText: 'Enter your password',
+                          labelText: 'Password',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: deptnamecontroller,
+                        decoration: const InputDecoration(
+                          hintText: 'Enter your department name',
+                          labelText: 'Department Name',
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -144,7 +215,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: TextField(
                         controller: deptnocontroller,
                         decoration: const InputDecoration(
-                          hintText: 'enter here department number',
+                          hintText: 'Enter the department number',
                           labelText: 'Department number',
                           border: OutlineInputBorder(),
                         ),
@@ -155,8 +226,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: TextField(
                         controller: semestercontroller,
                         decoration: const InputDecoration(
-                          hintText: 'enter here semester number',
-                          labelText: 'Semester no',
+                          hintText: 'Semester:',
+                          labelText: 'Semester number',
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -164,10 +235,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: TextField(
-                        controller: colnocontroller,
+                        controller: attendanceC,
                         decoration: const InputDecoration(
-                          hintText: 'enter here college id',
-                          labelText: 'College id',
+                          hintText: 'Enter your current attendance',
+                          labelText: 'Attendance percentage',
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -177,8 +248,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: TextField(
                         controller: colnamecontroller,
                         decoration: const InputDecoration(
-                          hintText: 'enter here college name',
-                          labelText: 'College name',
+                          hintText: 'Enter your college name',
+                          labelText: 'College Name',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: colnocontroller,
+                        decoration: const InputDecoration(
+                          hintText: 'Enter the college ID',
+                          labelText: 'College ID',
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -188,19 +270,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: TextField(
                         controller: distcontroller,
                         decoration: const InputDecoration(
-                          hintText: 'enter here district',
-                          labelText: 'district',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: TextField(
-                        controller: deptnamecontroller,
-                        decoration: const InputDecoration(
-                          hintText: 'enter here department name',
-                          labelText: 'department name',
+                          hintText: 'Enter your district',
+                          labelText: 'District',
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -210,8 +281,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: TextField(
                         controller: hodcontroller,
                         decoration: const InputDecoration(
-                          hintText: 'enter here hod name',
-                          labelText: 'hod name',
+                          hintText: 'Enter your HOD name',
+                          labelText: 'HOD Name',
                           border: OutlineInputBorder(),
                         ),
                       ),

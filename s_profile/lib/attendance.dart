@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import 'main.dart';
 import 'package:flutter/material.dart';
 import 'cmn.dart';
 import 'drawer.dart';
@@ -13,7 +13,6 @@ class Attendance extends StatefulWidget {
 }
 
 class _AttendanceState extends State<Attendance> {
-  TextEditingController regnocontroller = TextEditingController();
   String b = "";
 
   // ignore: non_constant_identifier_names
@@ -32,22 +31,11 @@ class _AttendanceState extends State<Attendance> {
           Center(
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: regnocontroller,
-                    decoration: const InputDecoration(
-                      hintText: 'enter here registration no',
-                      labelText: 'registeration no',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
                 ElevatedButton(
                   onPressed: () async {
                     Uri url = url_create.uri_cr("seeattendance.php");
                     var data = {
-                      'reg_no': regnocontroller.text,
+                      'reg_no': regno,
                     };
                     var res = await http.post(url, body: data);
                     // ignore: avoid_print

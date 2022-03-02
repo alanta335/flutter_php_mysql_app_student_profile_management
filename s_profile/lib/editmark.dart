@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'cmn.dart';
@@ -13,7 +13,6 @@ class EditMark extends StatefulWidget {
 }
 
 class _EditMarkState extends State<EditMark> {
-  TextEditingController regnocontroller = TextEditingController();
   TextEditingController semcontroller = TextEditingController();
   TextEditingController semmarkcontroller = TextEditingController();
   TextEditingController passcontroller = TextEditingController();
@@ -25,7 +24,7 @@ class _EditMarkState extends State<EditMark> {
     return Scaffold(
       drawer: const CmnDrawer(),
       appBar: AppBar(
-        title: const Text("details"),
+        title: Center(child: const Text("Update marks")),
       ),
       body: ListView(
         children: [
@@ -35,21 +34,10 @@ class _EditMarkState extends State<EditMark> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextField(
-                    controller: regnocontroller,
-                    decoration: const InputDecoration(
-                      hintText: 'enter here registration no',
-                      labelText: 'registration no',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
                     controller: semcontroller,
                     decoration: const InputDecoration(
-                      hintText: 'enter here semester no  eg s1 or s2 or s3 etx',
-                      labelText: 'sem no',
+                      hintText: 'Enter the semester to update',
+                      labelText: 'Semester number',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -71,8 +59,8 @@ class _EditMarkState extends State<EditMark> {
                     obscureText: true,
                     controller: passcontroller,
                     decoration: const InputDecoration(
-                      hintText: 'enter password',
-                      labelText: 'admin password',
+                      hintText: 'Enter administrator password',
+                      labelText: 'Admin Password',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -88,7 +76,7 @@ class _EditMarkState extends State<EditMark> {
                         });
                         Uri url = url_create.uri_cr("editmark.php");
                         var data = {
-                          'reg_no': regnocontroller.text,
+                          'reg_no': regno,
                           'sem': "${semcontroller.text}_sgpa",
                           'mark': semmarkcontroller.text,
                         };

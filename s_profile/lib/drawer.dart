@@ -40,7 +40,7 @@ class CmnDrawer extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "student mangement",
+                    "Student Mangement",
                     style: TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontWeight: FontWeight.bold,
@@ -57,35 +57,13 @@ class CmnDrawer extends StatelessWidget {
                 shadowColor: const Color(0xFF501474),
                 color: Colors.transparent,
                 child: ListTile(
-                  title: const Text('enter profile',
+                  title: const Text('See Profile',
                       style: TextStyle(color: Color(0xFFFFFFFF))),
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const MyHomePage(
-                          title: 'profile',
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Card(
-                margin: const EdgeInsets.only(right: 10),
-                shadowColor: const Color(0xFF501474),
-                color: Colors.transparent,
-                child: ListTile(
-                  title: const Text('see Profile',
-                      style: TextStyle(color: Color(0xFFFFFFFF))),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Sedetails(regno: "100"),
+                        builder: (context) => Sedetails(regno: regno),
                       ),
                     );
                   },

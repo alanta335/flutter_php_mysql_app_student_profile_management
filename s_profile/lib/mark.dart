@@ -3,6 +3,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'drawer.dart';
 import 'cmn.dart';
+import 'main.dart';
+import 'sedetails.dart';
+
 class Mark extends StatefulWidget {
   const Mark({Key? key}) : super(key: key);
 
@@ -11,20 +14,21 @@ class Mark extends StatefulWidget {
 }
 
 class _MarkState extends State<Mark> {
-  TextEditingController s1controller = TextEditingController();
-  TextEditingController s2controller = TextEditingController();
-  TextEditingController s3controller = TextEditingController();
-  TextEditingController s4controller = TextEditingController();
-  TextEditingController s5controller = TextEditingController();
-  TextEditingController s6controller = TextEditingController();
-  TextEditingController s7controller = TextEditingController();
-  TextEditingController s8controller = TextEditingController();
+  TextEditingController s1controller = TextEditingController()..text = '0.00';
+  TextEditingController s2controller = TextEditingController()..text = '0.00';
+  TextEditingController s3controller = TextEditingController()..text = '0.00';
+  TextEditingController s4controller = TextEditingController()..text = '0.00';
+  TextEditingController s5controller = TextEditingController()..text = '0.00';
+  TextEditingController s6controller = TextEditingController()..text = '0.00';
+  TextEditingController s7controller = TextEditingController()..text = '0.00';
+  TextEditingController s8controller = TextEditingController()..text = '0.00';
+  String a = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const CmnDrawer(),
       appBar: AppBar(
-        title: const Text("details"),
+        title: const Text("Enter your marks"),
       ),
       body: ListView(
         children: [
@@ -36,8 +40,8 @@ class _MarkState extends State<Mark> {
                   child: TextField(
                     controller: s1controller,
                     decoration: const InputDecoration(
-                      hintText: 'enter here s1 mark',
-                      labelText: 's1',
+                      hintText: 'Enter your S1 Mark',
+                      labelText: 'S1',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -47,8 +51,8 @@ class _MarkState extends State<Mark> {
                   child: TextField(
                     controller: s2controller,
                     decoration: const InputDecoration(
-                      hintText: 'enter here s2 mark',
-                      labelText: 's2',
+                      hintText: 'Enter your S2 Mark',
+                      labelText: 'S2',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -58,8 +62,8 @@ class _MarkState extends State<Mark> {
                   child: TextField(
                     controller: s3controller,
                     decoration: const InputDecoration(
-                      hintText: 'enter here s3 mark',
-                      labelText: 's3',
+                      hintText: 'Enter your S3 Mark',
+                      labelText: 'S3',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -69,19 +73,8 @@ class _MarkState extends State<Mark> {
                   child: TextField(
                     controller: s4controller,
                     decoration: const InputDecoration(
-                      hintText: 'enter here s4 mark',
-                      labelText: 's4',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: s4controller,
-                    decoration: const InputDecoration(
-                      hintText: 'enter here s4 mark',
-                      labelText: 's4',
+                      hintText: 'Enter your S4 Mark',
+                      labelText: 'S4',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -91,8 +84,8 @@ class _MarkState extends State<Mark> {
                   child: TextField(
                     controller: s5controller,
                     decoration: const InputDecoration(
-                      hintText: 'enter here s5 mark',
-                      labelText: 's5',
+                      hintText: 'Enter your S5 Mark',
+                      labelText: 'S5',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -102,8 +95,8 @@ class _MarkState extends State<Mark> {
                   child: TextField(
                     controller: s6controller,
                     decoration: const InputDecoration(
-                      hintText: 'enter here s6 mark',
-                      labelText: 's6',
+                      hintText: 'Enter your S6 Mark',
+                      labelText: 'S6',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -113,8 +106,8 @@ class _MarkState extends State<Mark> {
                   child: TextField(
                     controller: s7controller,
                     decoration: const InputDecoration(
-                      hintText: 'enter here s7 mark',
-                      labelText: 's7',
+                      hintText: 'Enter your S7 Mark',
+                      labelText: 'S7',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -124,16 +117,17 @@ class _MarkState extends State<Mark> {
                   child: TextField(
                     controller: s8controller,
                     decoration: const InputDecoration(
-                      hintText: 'enter here s8 mark',
-                      labelText: 's8',
+                      hintText: 'Enter your S8 Mark',
+                      labelText: 'S8',
                       border: OutlineInputBorder(),
                     ),
                   ),
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                    Uri url = url_create.uri_cr("f.php");
+                      Uri url = url_create.uri_cr("insert_mark.php");
                       var data = {
+                        'reg_no': regno,
                         's1': s1controller.text,
                         's2': s2controller.text,
                         's3': s3controller.text,
@@ -144,14 +138,19 @@ class _MarkState extends State<Mark> {
                         's8': s8controller.text,
                       };
                       var res = await http.post(url, body: data);
-                      // ignore: avoid_print
-                      print(jsonDecode(res.body));
-                      var s = jsonDecode(res.body);
-                      setState(() {
-                        String a = url.toString();
-                      });
+                      // // ignore: avoid_print
+                      // print(jsonDecode(res.body));
+                      // var s = jsonDecode(res.body);
+                      // setState(() {
+                      //   a = s[0];
+                      // });
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Sedetails(regno: regno)),
+                      );
                     },
-                    child: const Text("search")),
+                    child: Text("Insert and continue")),
               ],
             ),
           ),
